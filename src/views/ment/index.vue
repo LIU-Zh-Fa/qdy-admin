@@ -9,6 +9,7 @@
           <span>{{ scope.row.state=="1"?'新增':'已沟通'}}</span>
         </template>
       </el-table-column>
+      <el-table-column label="意见" prop="remark" :show-overflow-tooltip="true" />
       <el-table-column label="创建时间" align="center" prop="creattime">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.creattime) }}</span>

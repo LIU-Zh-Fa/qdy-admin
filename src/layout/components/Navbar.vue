@@ -45,6 +45,9 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
+import { calcDate } from "@/utils/date";
+import { validatenull } from '@/utils/validate'
+import website from '@/config/website'
 export default {
   components: {
     Breadcrumb,
@@ -53,11 +56,24 @@ export default {
     SizeSelect,
     LangSelect
   },
+  data(){
+    return {
+       //刷新token锁
+      refreshLock: false,
+      //刷新token的时间
+      refreshTime: "",
+    }
+  },
+  mounted() {
+    //实时检测刷新token
+    this.refreshToken()
+  },
   computed: {
     ...mapGetters([
       'sidebar',
       'avatar',
-      'device'
+      'device',
+      'last_refresh_token_time'
     ]),
     setting: {
       get() {
@@ -75,6 +91,27 @@ export default {
     }
   },
   methods: {
+        //10分钟检测一次token
+    refreshToken() {
+      this.refreshTime = setInterval(() => {
+        const date = calcDate(
+          this.last_refresh_token_time,
+          new Date().getTime()
+        );
+        if (validatenull(date)) return;
+        if (date.seconds >= website.tokenTime && !this.refreshLock) {
+          this.refreshLock = true;
+          this.$store
+            .dispatch("RefreshToken")
+            .then(() => {
+              this.refreshLock = false;
+            })
+            .catch(() => {
+              this.refreshLock = false;
+            });
+        }
+      }, 1000 * 60 * 1 );
+    },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

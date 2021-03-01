@@ -21,3 +21,10 @@ export const loginByUsername = (username, password) =>
       rememberMe: true
     }
   });
+  export function refeshToken(){
+    return request({
+      url: "/publicController/refreshToken",
+      method: "get",
+      params: {}
+    });
+  }

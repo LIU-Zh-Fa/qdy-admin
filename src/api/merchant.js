@@ -23,3 +23,10 @@ export function merchantSave(params){
     data: params
   })
 }
+export function merchanInfo(params){
+  return request({
+    url: "/ca/merchanInfo",
+    method: "POST",
+    data: params
+  })
+}

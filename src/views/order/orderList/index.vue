@@ -36,7 +36,8 @@
       <el-table-column label="订单号" prop="orderNum"  />
       <el-table-column label="商家名称" prop="sysmerchantname" />
       <el-table-column label="下单时间" prop="creatdate" />
-      <el-table-column label="用户昵称" prop="username" :show-overflow-tooltip="true" />
+      <el-table-column label="姓名" prop="username" :show-overflow-tooltip="true" />
+      <el-table-column label="联系电话" prop="phonenum" :show-overflow-tooltip="true" />
       <el-table-column label="订单状态" align="center">
         <template slot-scope="scope">
           {{ (statusOptions.filter(item=>item.value == scope.row.state)[0] || {label:''}).label}}
