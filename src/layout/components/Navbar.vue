@@ -99,7 +99,8 @@ export default {
           new Date().getTime()
         );
         if (validatenull(date)) return;
-        if (date.seconds >= website.tokenTime && !this.refreshLock) {
+        const token = this.$store.state.user.token
+        if (token && date.seconds >= website.tokenTime && !this.refreshLock) {
           this.refreshLock = true;
           this.$store
             .dispatch("RefreshToken")
@@ -110,7 +111,7 @@ export default {
               this.refreshLock = false;
             });
         }
-      }, 1000 * 60 * 1 );
+      }, 1000 * 60 * 10 );
     },
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
