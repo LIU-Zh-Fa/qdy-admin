@@ -34,9 +34,9 @@
         :visible.sync="open"
         width="30%"
         :before-close="handleClose">
-        <div><span class="tit">昵称：</span>123</div>
-        <div><span class="tit">问题和意见：</span>123</div>
-        <div><span class="tit">创建时间：</span>123</div>
+        <div><span class="tit">昵称：</span>{{handleDetailData.wechantname}}</div>
+        <div><span class="tit">问题和意见：</span>{{handleDetailData.opinion}}</div>
+        <div><span class="tit">创建时间：</span>{{handleDetailData.creattime|formateDate}}</div>
         <div class="pic">
           <img src="">
         </div>
@@ -49,6 +49,7 @@
 
 <script>
 import { getList } from "@/api/opinion";
+import moment from 'moment'
 export default {
   data() {
     return {
@@ -62,11 +63,21 @@ export default {
       },
       open: false,
       btnloading: false,
-      message: ''
+      message: '',
+      handleDetailData: {
+        opinion: '',
+        creattime: '',
+        wechantname: ''
+      }
     };
   },
   created() {
     this.getList();
+  },
+  filter:{
+    formateDate(v){
+      return moment(v).formate("YYYY-MM-DD HH:mm:ss")
+    }
   },
   methods: {
     getList() {
@@ -80,7 +91,7 @@ export default {
       );
     },
     handleDetail(row){
-      this.detail = row;
+      this.handleDetailData = row;
       this.open = true;
     },
     handleClose(){

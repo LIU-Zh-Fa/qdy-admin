@@ -1,8 +1,8 @@
 {
   "name": "ruoyi",
   "version": "3.1.0",
-  "description": "青享云电商平台运营端",
-  "author": "cosmoplat",
+  "description": "运营端",
+  "author": "qdy",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",

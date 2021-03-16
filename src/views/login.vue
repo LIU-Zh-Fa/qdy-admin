@@ -1,7 +1,8 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">后台管理系统</h3>
+    <h3 class="el-login-top">打印运营中心</h3>
+      <h3 class="title">运营登录</h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -32,7 +33,7 @@
           <img :src="codeUrl" @click="getCode" class="login-code-img"/>
         </div>
       </el-form-item> -->
-      <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
+      <!-- <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox> -->
       <el-form-item style="width:100%;">
         <el-button
           :loading="loading"
@@ -48,7 +49,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2019</span>
+      <a href="https://beian.miit.gov.cn/" target="_blank">去干嘛版权所有 © 2020-2021 鲁ICP备2021006417号-1</a>
     </div>
   </div>
 </template>
@@ -142,6 +143,7 @@
               this.$router.push({ path: this.redirect || "/" });
               //this.loading.close();
               this.loading = false;
+              
             }).catch(() => {
               //this.loading.close()
               this.loading = false;
@@ -160,7 +162,7 @@
     align-items: center;
     height: 100%;
     background-image: url("../assets/image/login-background.jpg");
-    background-size: cover;
+    background-size: 100% 100%;
   }
   .title {
     margin: 0px auto 30px auto;
@@ -171,8 +173,9 @@
   .login-form {
     border-radius: 6px;
     background: #ffffff;
-    width: 400px;
+    width: 300px;
     padding: 25px 25px 5px 25px;
+    position: relative;
     .el-input {
       height: 38px;
       input {
@@ -199,6 +202,14 @@
       vertical-align: middle;
     }
   }
+  .el-login-top{
+    position: absolute;
+    top: -120px;
+    width: 250px;
+    text-align: center;
+    font-size: 36px;
+    color: #555;
+  }
   .el-login-footer {
     height: 40px;
     line-height: 40px;
@@ -206,7 +217,7 @@
     bottom: 0;
     width: 100%;
     text-align: center;
-    color: #fff;
+    color: #666;
     font-family: Arial;
     font-size: 12px;
     letter-spacing: 1px;

@@ -33,7 +33,7 @@
     </el-form>
     <el-table v-loading="loading" :data="list">
       <el-table-column type="index" width="55" align="center" />
-      <el-table-column label="订单号" prop="orderNum"  />
+      <el-table-column label="订单号" prop="ordernum"  />
       <el-table-column label="商家名称" prop="sysmerchantname" />
       <el-table-column label="下单时间" prop="creatdate" />
       <el-table-column label="姓名" prop="username" :show-overflow-tooltip="true" />
